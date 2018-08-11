@@ -46,6 +46,16 @@
     }
     
 }
+- (IBAction)clearDrawing:(UIButton *)sender {
+    [self.drawingView clearDrawings];
+}
+- (IBAction)changeToEraseMode:(UIButton *)sender {
+    self.drawingView.drawingMode = NO;
+}
+- (IBAction)changeToLineMode:(UIButton *)sender {
+    self.drawingView.drawingMode = YES;
+}
+
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:@"RGBColorChanged"];

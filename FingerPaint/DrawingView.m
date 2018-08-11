@@ -11,7 +11,7 @@
 
 @interface DrawingView()
 // An array of line segments mimicking the path of the user has traced
-@property (nonatomic) NSMutableArray<LineSegmentDataModel *> *line;
+@property (nonatomic, strong) NSMutableArray<LineSegmentDataModel *> *line;
 
 @end
 
@@ -24,6 +24,7 @@
         _line = [NSMutableArray new];
         _color = [UIColor lightGrayColor];
         _lineWidth = 5.0;
+        _drawingMode = YES;
     }
     return self;
 }
@@ -39,10 +40,25 @@
     // basically a point
     LineSegmentDataModel *segment = [[LineSegmentDataModel alloc] initWithFirstPoint:first
                                                                          secondPoint:first];
-    [self.line addObject:segment];
+    if (self.drawingMode)
+    {
+        [self.line addObject:segment];
     
-    // Tell the system that we need to be redrawn, so the system will call drawRect: before
-    // the end of the current event loop
+        // Tell the system that we need to be redrawn, so the system will call drawRect: before
+        // the end of the current event loop
+
+    }
+    else
+    {
+        NSMutableArray *newArray = [[NSMutableArray alloc]init];
+        for (LineSegmentDataModel *data in self.line) {
+            if ((data.firstPoint.x != first.x && data.firstPoint.y != first.y) && (data.secondPoint.x != first.x && data.secondPoint.y != first.y) )
+                [newArray addObject:data];
+        }
+
+        self.line = newArray;
+
+    }
     [self setNeedsDisplay];
 }
 
@@ -53,10 +69,25 @@
     CGPoint second = [touch locationInView:self];        // Current touch location
     CGPoint first = [touch previousLocationInView:self]; // Previous touch location
     NSLog(@"%d: %@, %@", __LINE__, NSStringFromCGPoint(first), NSStringFromCGPoint(second));
-    // Line segment is from previous touch location to current touch location
-    LineSegmentDataModel *segment = [[LineSegmentDataModel alloc] initWithFirstPoint:first
-                                                                         secondPoint:second];
-    [self.line addObject:segment];
+    
+    if (self.drawingMode)
+    {
+        // Line segment is from previous touch location to current touch location
+        LineSegmentDataModel *segment = [[LineSegmentDataModel alloc] initWithFirstPoint:first
+                                                                             secondPoint:second];
+        [self.line addObject:segment];
+    }
+    else
+    {
+        NSMutableArray *newArray = [[NSMutableArray alloc]init];
+        for (LineSegmentDataModel *data in self.line) {
+            if ((data.firstPoint.x != second.x && data.firstPoint.y != second.y) && (data.secondPoint.x != second.x && data.secondPoint.y != second.y) )
+                [newArray addObject:data];
+        }
+        
+        self.line = newArray;
+        
+    }
     
     // Tell the system that we need to be redrawn, so the system will call drawRect: before
     // the end of the current event loop
@@ -71,8 +102,8 @@
     UIBezierPath *path = [UIBezierPath bezierPath];
     path.lineWidth = self.lineWidth;
     path.lineCapStyle = kCGLineCapRound;
-    UIColor *gray = self.color;
-    [gray setStroke];
+    UIColor *color = self.color;
+    [color setStroke];
     
     // Loop through all elements in the segment array and draw each line
     for (LineSegmentDataModel *segment in self.line) {
@@ -83,11 +114,20 @@
             [path moveToPoint:segment.firstPoint];
             continue;
         }
-        // Draw a line from the previous line segment to the first point
-        [path addLineToPoint:segment.firstPoint];
-        // Draw a line from the first point to the second point
-        [path addLineToPoint:segment.secondPoint];
+        if (CGRectContainsPoint(rect, segment.firstPoint) ||
+            CGRectContainsPoint(rect, segment.secondPoint))
+        {
+            // Draw a line from the previous line segment to the first point
+            [path addLineToPoint:segment.firstPoint];
+            // Draw a line from the first point to the second point
+            [path addLineToPoint:segment.secondPoint];
+        }
     }
     [path stroke];
+}
+
+-(void)clearDrawings{
+    [self.line removeAllObjects];
+    [self setNeedsDisplay];
 }
 @end

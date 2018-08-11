@@ -12,4 +12,7 @@
 
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, assign) float lineWidth;
+@property (nonatomic, assign) BOOL drawingMode;
+
+-(void) clearDrawings;
 @end
