@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "LineSegmentDataModel.h"
 #import "DrawingView.h"
 #import "RGBViewController.h"
 
