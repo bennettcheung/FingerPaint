@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <UIKit/UIColor.h>
 
 @interface RGBViewController : ViewController
 
