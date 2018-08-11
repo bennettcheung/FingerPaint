@@ -7,8 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "LineSegmentDataModel.h"
+#import "DrawingView.h"
+#import "RGBViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet DrawingView *drawingView;
 
 @end
 
@@ -17,8 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+   
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeColorOnDrawView:) name:@"RGBColorChanged" object:nil];
+
 }
 
+-(void)changeColorOnDrawView:(NSNotification *)notification{
+    NSDictionary* userInfo = notification.userInfo;
+    self.drawingView.color = (UIColor*)userInfo[@"color"];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -26,4 +38,17 @@
 }
 
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"showColorDialog"])
+    {
+        RGBViewController *rgbViewController = [segue destinationViewController];
+        rgbViewController.color = self.drawingView.color;
+    }
+    
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:@"RGBColorChanged"];
+    
+}
 @end

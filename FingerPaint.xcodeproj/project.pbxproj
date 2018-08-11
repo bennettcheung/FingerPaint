@@ -15,6 +15,9 @@
 		91153671211E2EEB00D4ED44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91153670211E2EEB00D4ED44 /* main.m */; };
 		9115367B211E2EEB00D4ED44 /* FingerPaintTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9115367A211E2EEB00D4ED44 /* FingerPaintTests.m */; };
 		91153686211E2EEB00D4ED44 /* FingerPaintUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 91153685211E2EEB00D4ED44 /* FingerPaintUITests.m */; };
+		91153695211E32FF00D4ED44 /* LineSegmentDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91153694211E32FF00D4ED44 /* LineSegmentDataModel.m */; };
+		9115369B211E374800D4ED44 /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9115369A211E374800D4ED44 /* DrawingView.m */; };
+		9115369E211E3C2E00D4ED44 /* RGBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9115369D211E3C2E00D4ED44 /* RGBViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,12 @@
 		91153681211E2EEB00D4ED44 /* FingerPaintUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FingerPaintUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91153685211E2EEB00D4ED44 /* FingerPaintUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FingerPaintUITests.m; sourceTree = "<group>"; };
 		91153687211E2EEB00D4ED44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91153693211E32FF00D4ED44 /* LineSegmentDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineSegmentDataModel.h; sourceTree = "<group>"; };
+		91153694211E32FF00D4ED44 /* LineSegmentDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineSegmentDataModel.m; sourceTree = "<group>"; };
+		91153699211E374800D4ED44 /* DrawingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
+		9115369A211E374800D4ED44 /* DrawingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
+		9115369C211E3C2E00D4ED44 /* RGBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RGBViewController.h; sourceTree = "<group>"; };
+		9115369D211E3C2E00D4ED44 /* RGBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RGBViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +111,16 @@
 			isa = PBXGroup;
 			children = (
 				91153661211E2EEA00D4ED44 /* AppDelegate.h */,
+				9115369C211E3C2E00D4ED44 /* RGBViewController.h */,
+				9115369D211E3C2E00D4ED44 /* RGBViewController.m */,
 				91153662211E2EEA00D4ED44 /* AppDelegate.m */,
+				91153699211E374800D4ED44 /* DrawingView.h */,
+				9115369A211E374800D4ED44 /* DrawingView.m */,
 				91153664211E2EEA00D4ED44 /* ViewController.h */,
 				91153665211E2EEA00D4ED44 /* ViewController.m */,
 				91153667211E2EEA00D4ED44 /* Main.storyboard */,
+				91153693211E32FF00D4ED44 /* LineSegmentDataModel.h */,
+				91153694211E32FF00D4ED44 /* LineSegmentDataModel.m */,
 				9115366A211E2EEB00D4ED44 /* Assets.xcassets */,
 				9115366C211E2EEB00D4ED44 /* LaunchScreen.storyboard */,
 				9115366F211E2EEB00D4ED44 /* Info.plist */,
@@ -264,7 +279,10 @@
 			files = (
 				91153666211E2EEA00D4ED44 /* ViewController.m in Sources */,
 				91153671211E2EEB00D4ED44 /* main.m in Sources */,
+				9115369E211E3C2E00D4ED44 /* RGBViewController.m in Sources */,
 				91153663211E2EEA00D4ED44 /* AppDelegate.m in Sources */,
+				9115369B211E374800D4ED44 /* DrawingView.m in Sources */,
+				91153695211E32FF00D4ED44 /* LineSegmentDataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
